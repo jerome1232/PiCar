@@ -8,10 +8,10 @@ import signal
 GPIO.setmode(GPIO.BCM)
 
 #
-# robot class, allows me to create a robot with two motors
-# three ir sensors and two leds, I'm not sure this is really necessary...
-# but I think it will make things more clear to have the robot all wrapped up
-# in one class.
+# robot class, 
+# 
+# Can drive forward, backward, turn in forwards and backwards ways.
+# this simplifies logic later in.
 #
 class Robot:
     def __init__(self, rightMotor, leftMotor):
@@ -64,6 +64,10 @@ class Robot:
             self.leftMotor.motorModifySpeed(self.motorDc)
             print("Duty Cycle at: ", self.motorDc)
             
+#
+# This class is for individual motors
+#
+
 class MotorDriver:
     def __init__(self, forward, backward, enable, dc, freq):
         self.forward = forward

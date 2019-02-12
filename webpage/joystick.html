@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css" />
+        <meta name="viewport" 
+              content="width=device-width, initial-scale=1" 
+              charset="UTF-8">
+        <title>Devnull's Robotic Car</title>
+    </head>
+
+    <body>
+        <div class="topnav">
+            <a href="index.html">Home</a>
+            <a href="startpi.php">PiCar</a>
+            <a class="active" href="joystick.html">Joystick Testing</a>
+            <a href="downloads.php">Downloads</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+        </div>
+        <div id="joystick">
+        <script src="nipplejs/src/nipple.js"></script>
+        <script>
+            var dynamic = nipplejs.create({
+                zone: document.getElementById('dynamic'),
+                color: 'blue'
+               });
+        </script>

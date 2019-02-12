@@ -13,6 +13,7 @@
             <a href="index.html">Home</a>
             <a href="startpi.php">PiCar</a>
             <a class="active" href="downloads.php">Downloads</a>
+            <a href="joystick.html">Joystick Testing</a>
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
         </div>

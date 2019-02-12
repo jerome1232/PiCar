@@ -10,6 +10,7 @@
         <div class="topnav">
             <a href="index.html">Home</a>
             <a class="active" href="startpi.php">PiCar</a>
+            <a href="joystick.html">Joystick Testing</a>
             <a href="downloads.php">Downloads</a>
             <a href="#contact">Contact</a>
             <a href="#about">About</a>

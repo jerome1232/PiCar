@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 import socket
 import os
 import signal
+import subprocess
 GPIO.setmode(GPIO.BCM)
 
 #
@@ -30,15 +31,19 @@ class Robot:
 
     def motorRightF(self):
         self.rightMotor.motorForward(self.motorDc)
+        self.leftMotor.motorStop()
     
     def motorRightB(self):
         self.rightMotor.motorBackward(self.motorDc)
+        self.leftMotor.motorStop()
                 
     def motorLeftF(self):
         self.leftMotor.motorForward(self.motorDc)
+        self.rightMotor.motorStop()
         
     def motorLeftB(self):
         self.leftMotor.motorBackward(self.motorDc)
+        self.rightMotor.motorStop()
 
     def stop(self):
         self.rightMotor.motorStop()
@@ -114,14 +119,14 @@ def main():
     ###########################
     ## Left Motor Pins ###
     lenable_pin = 16
-    lforward_pin = 20
-    lbackward_pin = 21
+    lforward_pin = 21
+    lbackward_pin = 20
     ## Right Motor Pins ###
     renable_pin = 13
     rforward_pin = 26
     rbackward_pin = 19 
     ## Motor Duty cycle and frequncy
-    motorFreq = 60
+    motorFreq = 1000
     motorDc = 100
     ##################################
     # Creating left and right motors #

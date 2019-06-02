@@ -15,7 +15,10 @@
             <a href="#contact">Contact</a>
             <a href="#about">About</a>
         </div>
+
+
 <?php
+
     echo "<p>";
     echo shell_exec('uptime -p');
     echo "<br>";
@@ -34,9 +37,12 @@
     echo "If you kill the python script, just reload the page it will be run automatically again";
     echo "</p>"
 ?>
+<div id="overlay">
+    <div id="text">Press W!</div>
+<img src="http://192.168.0.5:8080/?action=stream" />
+</div>
     <script src='jquery/jquery-3.3.1.js'></script>
     <script src='keys.js'></script></body>
-    
     <p>
     <canvas id="keyPressed")
         width="600px"

@@ -126,7 +126,7 @@ def main():
     rforward_pin = 26
     rbackward_pin = 19 
     ## Motor Duty cycle and frequncy
-    motorFreq = 1000
+    motorFreq = 4000
     motorDc = 100
     ##################################
     # Creating left and right motors #

@@ -9,8 +9,8 @@ import subprocess
 GPIO.setmode(GPIO.BCM)
 
 #
-# robot class, 
-# 
+# robot class,
+#
 # Can drive forward, backward, turn in forwards and backwards ways.
 # this simplifies logic later in.
 #
@@ -35,15 +35,15 @@ class Robot:
     def motorRightF(self):
         self.rightMotor.motorForward(self.motorDc)
         self.leftMotor.motorStop()
-    
+
     def motorRightB(self):
         self.rightMotor.motorBackward(self.motorDc)
         self.leftMotor.motorStop()
-                
+
     def motorLeftF(self):
         self.leftMotor.motorForward(self.motorDc)
         self.rightMotor.motorStop()
-        
+
     def motorLeftB(self):
         self.leftMotor.motorBackward(self.motorDc)
         self.rightMotor.motorStop()
@@ -51,6 +51,12 @@ class Robot:
     def stop(self):
         self.rightMotor.motorStop()
         self.leftMotor.motorStop()
+
+    def checkBack(self):
+        if self.irSensor.read():
+            self.spk.on()
+        else:
+            self.spk.off()
 
     def accelerate(self):
         if self.motorDc == 100:
@@ -71,7 +77,7 @@ class Robot:
             self.rightMotor.motorModifySpeed(self.motorDc)
             self.leftMotor.motorModifySpeed(self.motorDc)
             print("Duty Cycle at: ", self.motorDc)
-            
+
 ###########################################
 ### This class is for individual motors ###
 ###########################################
@@ -109,49 +115,49 @@ class MotorDriver:
         print("enable:   ", GPIO.input(self.enable))
         print("forward:  ", GPIO.input(self.forward))
         print("backward: ", GPIO.input(self.backward))
-        
+
 #######################
 ### IR sensor class ###
 #######################
-Class IrSensor:
+class IrSensor:
     def __init__(self, pin):
         self.ir_pin = pin
         GPIO.setup(pin, GPIO.IN)
-        
+
     def read(self):
         return GPIO.input(self.ir_pin)
-    
+
 ###################
 ### LED Flasher ###
 ###################
-Class LED_Flasher:
+class LED_Flasher:
     def __init__(self, pin):
         self.pin = pin
         GPIO.setup(pin, GPIO.OUT)
         self.dc = 15
         self.freq = 1
         self.flash = GPIO.PWM(pin, freq)
-        
+
     def on(self):
         self.flash.start(self.dc)
-        
+
     def off(self):
         self.flash.stop()
 
-Class toneEmitter:
+class toneEmitter:
     def __init__(self, pin, freq):
         self.pin = pin
         self.freq = freq
         GPIO.setup(pin, GPIO.OUT)
         self.dc = 50
         self.emit = GPIO.PWM(pin, freq)
-        
+
     def on(self):
         self.emit.start(self.dc)
-        
+
     def off(self):
         self.emit.stop()
-        
+
 def signal_handler(signum, frame):
     print("Received {}. Cleaning up.".format(signum))
     GPIO.cleanup()
@@ -168,7 +174,7 @@ def main():
     ## Right Motor Pins ###
     renable_pin = 13
     rforward_pin = 19
-    rbackward_pin = 26 
+    rbackward_pin = 26
     ## Motor Duty cycle and frequncy
     motorFreq = 4000
     motorDc = 100
@@ -179,7 +185,7 @@ def main():
     ## Tone emitter
     spk_pin = 32 ### PLACE HOLDER VALUE, NOT TRUE PIN
     tone = 440 ### Hertz to drive speaker at
-    
+
     ##################################
     # Creating left and right motors #
     ##################################
@@ -237,7 +243,7 @@ def main():
     isR = False
     isF = False
     isSpace = False
-    
+
     # Reading from the socket to listen for data
     while not isQ:
         print('Waiting for a connection')
@@ -271,7 +277,7 @@ def main():
                         isA = False
                 elif data == 'dUp':
                         isD = False
-        
+
         if isW:
                 if isA:
                         car.motorRightF()
@@ -291,7 +297,7 @@ def main():
         time.sleep(.01)
     car.stop()
     GPIO.cleanup()
-    
+
 # Running main
 if __name__ == "__main__":
     try:

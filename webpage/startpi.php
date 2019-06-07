@@ -19,6 +19,9 @@
 
 <?php
 
+    $ip = $_SERVER['SERVER_ADDR'];
+    echo "<br><br>";
+    echo "<img src=\"http://$ip:8080/?action=stream\" />";
     echo "<p>";
     echo shell_exec('uptime -p');
     echo "<br>";
@@ -35,11 +38,12 @@
     shell_exec($cmd);
     echo "Script Started, ready to roll<br>";
     echo "If you kill the python script, just reload the page it will be run automatically again";
-    echo "</p>"
+    echo "<br>";
+    echo "server ip: $ip";
+    echo "</p>";
 ?>
-<div id="overlay">
-  <img = "http://192.168.0.16:8080/?action=stream">
-</div>
+  <img src = "http://192.168.0.16:8080/?action=stream" />
+
     <script src='jquery/jquery-3.3.1.js'></script>
     <script src='keys.js'></script></body>
     <p>

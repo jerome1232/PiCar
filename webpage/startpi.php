@@ -36,10 +36,10 @@
     echo "Script Started, ready to roll<br>";
     echo "If you kill the python script, just reload the page it will be run automatically again";
     echo "</p>"
+    $ip = $_SERVER['REMOTE_ADDR'];
+    echo "<img src=http://$ip:8080/?action=stream />"
 ?>
 <div id="overlay">
-    <div id="text">Press W!</div>
-<img src="http://192.168.0.5:8080/?action=stream" />
 </div>
     <script src='jquery/jquery-3.3.1.js'></script>
     <script src='keys.js'></script></body>
@@ -52,7 +52,7 @@
     <footer>
         <address>
             Written by <a href="mailto:j.jones1232@gmail.com">Jeremy Jones</a>.<br>
-            Last modified: Mon Spetember 3<sup>rd</sup> 2018.
+            Last modified: Mon June 6<sup>th</sup> 2019.
         </address>
     </footer>
 </html>

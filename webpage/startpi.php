@@ -42,8 +42,6 @@
     echo "server ip: $ip";
     echo "</p>";
 ?>
-  <img src = "http://192.168.0.16:8080/?action=stream" />
-
     <script src='jquery/jquery-3.3.1.js'></script>
     <script src='keys.js'></script></body>
     <p>

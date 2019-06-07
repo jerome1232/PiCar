@@ -38,8 +38,12 @@
     echo "</p>"
     $ip = $_SERVER['SERVER_ADDR'];
     $img = "http://" . $ip . ":8080/?action=stream"
+<<<<<<< HEAD
     echo "$ip"
     echo "$img"
+=======
+    echo "<img src='$img' />"
+>>>>>>> 29c78ce25f3046abfe4c4385c436c62c3dc560c2
 ?>
 <div id="overlay">
 </div>

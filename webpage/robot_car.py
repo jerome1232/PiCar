@@ -15,11 +15,14 @@ GPIO.setmode(GPIO.BCM)
 # this simplifies logic later in.
 #
 class Robot:
-    def __init__(self, rightMotor, leftMotor):
+    def __init__(self, rightMotor, leftMotor, irSensor, led, spk):
         self.rightMotor = rightMotor
         self.leftMotor = leftMotor
         self.motorDc = rightMotor.dc
         self.motorFreq = rightMotor.freq
+        self.irSensor = irSensor
+        self.led = led
+        self.spk = spk
 
     def driveForward(self):
         self.rightMotor.motorForward(self.motorDc)
@@ -69,21 +72,20 @@ class Robot:
             self.leftMotor.motorModifySpeed(self.motorDc)
             print("Duty Cycle at: ", self.motorDc)
             
-#
-# This class is for individual motors
-#
-
+###########################################
+### This class is for individual motors ###
+###########################################
 class MotorDriver:
     def __init__(self, forward, backward, enable, dc, freq):
         self.forward = forward
         self.backward = backward
         self.enable = enable
         self.pin_list = [forward, backward, enable]
-        GPIO.setup(self.pin_list, GPIO.OUT)
+        GPIO.setup(pin_list, GPIO.OUT)
         self.dc = dc
         self.freq = freq
-        self.motor = GPIO.PWM(enable, self.freq)
-        self.motor.start(self.dc)
+        self.motor = GPIO.PWM(enable, freq)
+        self.motor.start(dc)
 
     def motorForward(self, dc):
         GPIO.output(self.forward, GPIO.HIGH)
@@ -107,7 +109,49 @@ class MotorDriver:
         print("enable:   ", GPIO.input(self.enable))
         print("forward:  ", GPIO.input(self.forward))
         print("backward: ", GPIO.input(self.backward))
+        
+#######################
+### IR sensor class ###
+#######################
+Class IrSensor:
+    def __init__(self, pin):
+        self.ir_pin = pin
+        GPIO.setup(pin, GPIO.IN)
+        
+    def read(self):
+        return GPIO.input(self.ir_pin)
+    
+###################
+### LED Flasher ###
+###################
+Class LED_Flasher:
+    def __init__(self, pin):
+        self.pin = pin
+        GPIO.setup(pin, GPIO.OUT)
+        self.dc = 15
+        self.freq = 1
+        self.flash = GPIO.PWM(pin, freq)
+        
+    def on(self):
+        self.flash.start(self.dc)
+        
+    def off(self):
+        self.flash.stop()
 
+Class toneEmitter:
+    def __init__(self, pin, freq):
+        self.pin = pin
+        self.freq = freq
+        GPIO.setup(pin, GPIO.OUT)
+        self.dc = 50
+        self.emit = GPIO.PWM(pin, freq)
+        
+    def on(self):
+        self.emit.start(self.dc)
+        
+    def off(self):
+        self.emit.stop()
+        
 def signal_handler(signum, frame):
     print("Received {}. Cleaning up.".format(signum))
     GPIO.cleanup()
@@ -119,15 +163,23 @@ def main():
     ###########################
     ## Left Motor Pins ###
     lenable_pin = 16
-    lforward_pin = 21
-    lbackward_pin = 20
+    lforward_pin = 20
+    lbackward_pin = 21
     ## Right Motor Pins ###
     renable_pin = 13
-    rforward_pin = 26
-    rbackward_pin = 19 
+    rforward_pin = 19
+    rbackward_pin = 26 
     ## Motor Duty cycle and frequncy
     motorFreq = 4000
     motorDc = 100
+    ## IR Sensor
+    ir_pin= 17  ### PLACEHOLDER VALUE, NOT TRUE PIN
+    ## Blue LED
+    led_pin = 27 ### PLACE HOLDER VALUE, NOT TRUE PIN
+    ## Tone emitter
+    spk_pin = 32 ### PLACE HOLDER VALUE, NOT TRUE PIN
+    tone = 440 ### Hertz to drive speaker at
+    
     ##################################
     # Creating left and right motors #
     ##################################
@@ -135,10 +187,19 @@ def main():
             motorDc, motorFreq)
     right_motor = MotorDriver(rforward_pin, rbackward_pin, renable_pin,
             motorDc, motorFreq)
+    ##########################################
+    ### Creating IR sensor and LED flasher ###
+    ##########################################
+    irSensor = IrSensor(ir_pin)
+    led = LED_Flasher(led_pin)
+    ########################
+    ### Creating speaker ###
+    ########################
+    spk = toneEmmitter(spk_pin, tone)
     #############################
     ### Creating robot object ###
     #############################
-    car = Robot(left_motor, right_motor)
+    car = Robot(left_motor, right_motor, irSensor, led, spk)
 
     ##########################################################################
     ### Writting PID out to file so that PHP script can kill us on reload  ###
@@ -167,6 +228,7 @@ def main():
     print('Starting up on {}'.format(server_address))
     sock.bind(server_address)
     sock.listen(1)
+    # initialising variables to False
     isW = False
     isA = False
     isD = False

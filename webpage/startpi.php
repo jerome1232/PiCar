@@ -36,10 +36,9 @@
     echo "Script Started, ready to roll<br>";
     echo "If you kill the python script, just reload the page it will be run automatically again";
     echo "</p>"
-    $ip = $_SERVER['SERVER_ADDR'];
-    $img = "http://" . $ip . ":8080/?action=stream"
 ?>
 <div id="overlay">
+  <img = "http://192.168.0.16:8080/?action=stream">
 </div>
     <script src='jquery/jquery-3.3.1.js'></script>
     <script src='keys.js'></script></body>

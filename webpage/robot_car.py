@@ -23,6 +23,7 @@ class Robot:
         self.irSensor = irSensor
         self.led = led
         self.spk = spk
+        led.on()
 
     def driveForward(self):
         self.rightMotor.motorForward(self.motorDc)

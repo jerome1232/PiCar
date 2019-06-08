@@ -47,6 +47,24 @@ class Robot:
     """
 
     def __init__(self, rightMotor, leftMotor, irSensor, led, spk):
+        """"
+        Attributes:
+            rightMotor : (motorDriver)
+                The motor/motors on right side.
+            leftMotor : (motorDriver)
+                The motor/motrs on left side.
+            motorDc : (int)
+                Duty Cycle, portion of on off time per cycle.
+            motorFreq : (int)
+                Frequncy to pulse off/on to motors.
+            irSensor : (irSensor)
+                infrared sensor to check for objects being backed into.
+            led : (LED_Flasher)
+                led flasher, to indicate program is running.
+            spk : (toneEmitter)
+                The horn!
+        """
+        
         self.rightMotor = rightMotor
         self.leftMotor = leftMotor
         self.motorDc = rightMotor.dc
@@ -371,15 +389,13 @@ def main():
             car.changeSpeed("down")
 
         if isH:
-            ## PLACEHOLDER NO FUNCTION EXISTS TO HONK horn
-            print("test")
+            car.honk(True)
         else:
-            #### STOP HONKING
-            print("test")
-
+            car.honk(False)
         # Give the cpu some free time for other tasks by sleeping
         # one millisecond
         time.sleep(.01)
+    # if loop has broken, stop the motor, clean pin and exit
     car.stop()
     GPIO.cleanup()
 

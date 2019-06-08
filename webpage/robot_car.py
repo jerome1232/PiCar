@@ -352,25 +352,23 @@ def main():
         ### Begin logic to run the Car
         ###
         if isW:
+            car.drive("forward")
             if isA:
-                car.motorRightF()
+                car.turn("left")
             elif isD:
-                car.motorLeftF()
-            else:
-                car.driveForward()
+                car.turn("right")
         elif isS:
+            car.drive("backward")
             if isA:
-                car.motorRightB()
+                car.turn("left")
             elif isD:
-                car.motorLeftB()
-            else:
-                car.driveBackward()
+                car.turn("right")
         else:
                 car.stop()
         if isR:
-            car.accelerate()
+            car.changeSpeed("up")
         elif isF:
-            car.deccelerate()
+            car.changeSpeed("down")
 
         if isH:
             ## PLACEHOLDER NO FUNCTION EXISTS TO HONK horn

@@ -8,13 +8,44 @@ import signal
 import subprocess
 GPIO.setmode(GPIO.BCM)
 
-#
-# robot class,
-#
-# Can drive forward, backward, turn in forwards and backwards ways.
-# this simplifies logic later in.
-#
 class Robot:
+    """
+    Create a robotic car with two motors, an ir sensor and a speaker.
+
+    Attributes:
+        rightMotor : (motorDriver)
+            Motor on right side of the car.
+        leftMotor : (motorDriver)
+            Motor on the left side of the car.
+        motorDc : (int)
+            Dutycycle to run motors at.
+        motorFreq : (int)
+            Number of times per second to pulse signal to motors.
+        irSensor : (irSensor)
+            Check if an object is behind car.
+        led : (LED_Flasher)
+            Turns on/off a flashing LED.
+        spk : (toneEmitter)
+            Object to emit sound, primarily used as a horn.
+
+    Methods:
+        drive(direction)
+            Drives both motors forwards or backwards.
+
+        turn(direction)
+            Turns the car right or left, reversed while backup up.
+
+        stop()
+            Stops both motors.
+
+        changeSpeed(upDown)
+            Changes motor duty cycle up or down to speed up or slow down
+            both motors.
+
+        honk(doHonk)
+            Honks the horn!
+    """
+
     def __init__(self, rightMotor, leftMotor, irSensor, led, spk):
         self.rightMotor = rightMotor
         self.leftMotor = leftMotor
@@ -25,31 +56,42 @@ class Robot:
         self.spk = spk
         led.on()
 
-    def driveForward(self):
-        self.rightMotor.motorForward(self.motorDc)
-        self.leftMotor.motorForward(self.motorDc)
+    def drive(self, direction):
+        """
+        Drives the motors forwards or backwards based on direction.
 
-    def driveBackward(self):
-        self.rightMotor.motorBackward(self.motorDc)
-        self.leftMotor.motorBackward(self.motorDc)
+        pass forward or backward as direction to drive.
 
-    def motorRightF(self):
-        self.rightMotor.motorForward(self.motorDc)
-        self.leftMotor.motorStop()
+        Attributes:
+            direction : (str)
+                Can be forward or backward
+        """
 
-    def motorRightB(self):
-        self.rightMotor.motorBackward(self.motorDc)
-        self.leftMotor.motorStop()
+        if direction == "forward":
+            self.rightMotor.motorForward(self.motorDc)
+            self.leftMotor.motorForward(self.motorDc)
+        elif direction == "backward":
+            self.rightMotor.motorBackward(self.motorDc)
+            self.leftMotor.motorBackward(self.motorDc)
 
-    def motorLeftF(self):
-        self.leftMotor.motorForward(self.motorDc)
-        self.rightMotor.motorStop()
+    def turn(self, direction):
+        """
+        Drives one side to turn robot right or left. backing up results
+        in steering be reversed.
 
-    def motorLeftB(self):
-        self.leftMotor.motorBackward(self.motorDc)
-        self.rightMotor.motorStop()
+        Attributes:
+            direction : (str)
+                Can be right or left.
+        """
+
+        if direction == "right":
+            self.leftMotor.motorStop()
+        elif direction == "left":
+            self.rightMotor.motorStop()
 
     def stop(self):
+        """Stops the motors."""
+
         self.rightMotor.motorStop()
         self.leftMotor.motorStop()
 
@@ -59,25 +101,44 @@ class Robot:
         else:
             self.spk.off()
 
-    def accelerate(self):
-        if self.motorDc == 100:
-            print("Already at full speed!")
-        else:
-            self.motorDc = self.motorDc + 10
-            if self.motorDc > 100: self.motorDc = 100
-            self.rightMotor.motorModifySpeed(self.motorDc)
-            self.leftMotor.motorModifySpeed(self.motorDc)
-            print("Duty Cycle at: ", self.motorDC)
+    def changeSpeed(self, upDown):
+        """
+        Changes the speed the motors are driven at in increments of 5
 
-    def deccelerate(self):
-        if self.motorDc == 0:
-            print("Already at minimum speed!")
+        Attributes:
+            upDown : (str)
+                Can be either up or down.
+            INC : (int)
+                Increment to move duty cycle up or down by.
+
+        """
+
+        INC = 5
+        if upDown == "up":
+            if self.motorDc == 100:
+                print("Already at full speed!")
+            else:
+                self.motorDc = self.motorDc + INC
+                if self.motorDc > 100: self.motorDc = 100
+                self.rightMotor.motorModifySpeed(self.motorDc)
+                self.leftMotor.motorModifySpeed(self.motorDc)
+                print("Duty Cycle at: ", self.motorDC)
+        elif upDown == "down":
+            if self.motorDc == 0:
+                print("Already at minimum speed!")
+            else:
+                self.motorDc = self.motorDc - INC
+                if self.motorDc < 0: self.motorDc = 0
+                self.rightMotor.motorModifySpeed(self.motorDc)
+                self.leftMotor.motorModifySpeed(self.motorDc)
+                print("Duty Cycle at: ", self.motorDc)
+
+    def honk(self, doHonk):
+        """Honks the horn!"""
+        if doHonk:
+            self.spk.on()
         else:
-            self.motorDc = self.motorDc - 10
-            if self.motorDc < 0: self.motorDc = 0
-            self.rightMotor.motorModifySpeed(self.motorDc)
-            self.leftMotor.motorModifySpeed(self.motorDc)
-            print("Duty Cycle at: ", self.motorDc)
+            self.spk.off()
 
 ###########################################
 ### This class is for individual motors ###
@@ -287,7 +348,9 @@ def main():
                 isF = False
             elif data == 'hUp':
                 isH = False
-
+        ###
+        ### Begin logic to run the Car
+        ###
         if isW:
             if isA:
                 car.motorRightF()

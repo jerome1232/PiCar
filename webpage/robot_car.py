@@ -244,6 +244,7 @@ def main():
     isR = False
     isF = False
     isSpace = False
+    isH = False
 
     # Reading from the socket to listen for data
     while not isQ:
@@ -254,47 +255,69 @@ def main():
         data = data.decode(encoding="UTF-8", errors="strict")
         # testing the data so we can act on it
         if data:
-                if data == 'wDown':
-                        isW = True
-                elif data == 'sDown':
-                        isS = True
-                elif data == 'spaceDown':
-                        isSpace = True
-                elif data == 'aDown':
-                        isA = True
-                elif data == 'dDown':
-                        isD = True
-                elif data == 'rDown':
-                        isR == True
-                elif data == 'fDown':
-                        isF == True
-                elif data == 'qDown':
-                        isQ == True
-                elif data == 'wUp':
-                        isW = False
-                elif data == 'sUp':
-                        isS = False
-                elif data == 'aUp':
-                        isA = False
-                elif data == 'dUp':
-                        isD = False
+            if data == 'wDown':
+                isW = True
+            elif data == 'sDown':
+                isS = True
+            elif data == 'spaceDown':
+                isSpace = True
+            elif data == 'aDown':
+                isA = True
+            elif data == 'dDown':
+                isD = True
+            elif data == 'rDown':
+                isR = True
+            elif data == 'fDown':
+                isF = True
+            elif data == 'qDown':
+                isQ = True
+            elif data == 'hDown':
+                isH = True
+            elif data == 'wUp':
+                isW = False
+            elif data == 'sUp':
+                isS = False
+            elif data == 'aUp':
+                isA = False
+            elif data == 'dUp':
+                isD = False
+            elif data == 'rUp':
+                isR = False
+            elif data == 'fUp':
+                isF = False
+            elif data == 'hUp':
+                isH = False
 
         if isW:
-                if isA:
-                        car.motorRightF()
-                elif isD:
-                        car.motorLeftF()
-                else:
-                        car.driveForward()
+            if isA:
+                car.motorRightF()
+            elif isD:
+                car.motorLeftF()
+            else:
+                car.driveForward()
         elif isS:
-                if isA:
-                        car.motorRightB()
-                elif isD:
-                        car.motorLeftB()
-                else:
-                        car.driveBackward()
+            if isA:
+                car.motorRightB()
+            elif isD:
+                car.motorLeftB()
+            else:
+                car.driveBackward()
         else:
                 car.stop()
+        if isR:
+            car.accelerate()
+        elif isF:
+            car.deccelerate()
+
+        if isH:
+            ## PLACEHOLDER NO FUNCTION EXISTS TO HONK horn
+            print("test")
+        else:
+            #### STOP HONKING
+            print("test")
+
+        # Give the cpu some free time for other tasks by sleeping
+        # one millisecond
         time.sleep(.01)
     car.stop()
     GPIO.cleanup()

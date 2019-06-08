@@ -17,7 +17,6 @@ def main():
     pidf.write(pid)
     pidf.close()
 
-
     try:
         os.unlink(server_address)
     except OSError:
@@ -41,8 +40,8 @@ def main():
             if (data == '81'):
                 print("Q was pressed")
                 sys.exit()
-            
-if __name__ == "__main__":
+
+    if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:

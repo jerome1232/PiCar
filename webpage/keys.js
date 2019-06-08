@@ -94,9 +94,9 @@ document.addEventListener('keydown', function(keyDown) {
       url: 'sock_write.php',
       data: {key: "rDown"},
       success: function(data) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.fillText('R: Increasing speed', 10, 50);
-          ctx.fillText(data, 10, 80);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillText('R: Increasing speed', 10, 50);
+        ctx.fillText(data, 10, 80);
       }
     });
   }
@@ -111,6 +111,18 @@ document.addEventListener('keydown', function(keyDown) {
         ctx.fillText(data, 10, 80);
       }
     });
+  }
+  else if (keyDown.keyCode == 72) {
+    $.ajax({
+      type: 'POST',
+      url: 'sock_write.php',
+      data: {key: "hDown"},
+      success: fucntion(data) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillText('Honking the horn', 10, 50);
+        ctx.fillText(data, 10, 80);
+      }
+    })
   }
 }, true);
 

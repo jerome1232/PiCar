@@ -137,19 +137,19 @@ class Robot:
                 print("Already at full speed!")
             else:
                 self.motorDc = self.motorDc + INC
-                if self.motorDc > 100: self.motorDc = 100
-                self.rightMotor.motorModifySpeed(self.motorDc)
-                self.leftMotor.motorModifySpeed(self.motorDc)
-                print("Duty Cycle at: ", self.motorDC)
+                if self.motorDc > 100: self.motorDc = 100:
+                    self.rightMotor.motorModifySpeed(self.motorDc)
+                    self.leftMotor.motorModifySpeed(self.motorDc)
+                    print("Duty Cycle at: ", self.motorDC)
         elif upDown == "down":
             if self.motorDc == 0:
                 print("Already at minimum speed!")
             else:
                 self.motorDc = self.motorDc - INC
-                if self.motorDc < 0: self.motorDc = 0
-                self.rightMotor.motorModifySpeed(self.motorDc)
-                self.leftMotor.motorModifySpeed(self.motorDc)
-                print("Duty Cycle at: ", self.motorDc)
+                if self.motorDc < 0: self.motorDc = 0:
+                    self.rightMotor.motorModifySpeed(self.motorDc)
+                    self.leftMotor.motorModifySpeed(self.motorDc)
+                    print("Duty Cycle at: ", self.motorDc)
 
     def honk(self, doHonk):
         """Honks the horn!"""

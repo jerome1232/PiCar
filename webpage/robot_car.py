@@ -64,7 +64,7 @@ class Robot:
             spk : (toneEmitter)
                 The horn!
         """
-        
+
         self.rightMotor = rightMotor
         self.leftMotor = leftMotor
         self.motorDc = rightMotor.dc

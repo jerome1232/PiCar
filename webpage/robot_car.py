@@ -96,7 +96,6 @@ def main():
 	isH = False
 
 	# Reading from the socket to listen for data
-	car.
 	while not isQ:
 		print('Waiting for a connection')
 		conct, client_address = sock.accept()

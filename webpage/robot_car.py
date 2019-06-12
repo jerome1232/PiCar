@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import sys
 import time
-import RPi.GPIO as GPIO
 import socket
 import os
 import signal

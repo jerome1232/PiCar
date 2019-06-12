@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import RPi.GPIO as GPIO
 class Robot:
 	"""
 	Create a robotic car with two motors, an ir sensor and a speaker.

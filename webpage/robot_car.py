@@ -14,7 +14,6 @@ def signal_handler(signum, frame):
 	print("Received {}. Cleaning up.".format(signum))
 	GPIO.cleanup()
 
-
 def main():
 	###########################
 	## Setting up GPIO pins ###

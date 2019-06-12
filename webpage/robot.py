@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
 class Robot:
 	"""
 	Create a robotic car with two motors, an ir sensor and a speaker.

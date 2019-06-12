@@ -4,9 +4,9 @@ import time
 import socket
 import os
 import signal
+import RPi.GPIO as GPIO
 import subprocess
 from robot import Robot, Motor, Led_Flasher, IrSensor, ToneEmitter
-GPIO.setmode(GPIO.BCM)
 
 def signal_handler(signum, frame):
 	print("Received {}. Cleaning up.".format(signum))

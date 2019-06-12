@@ -152,7 +152,7 @@ def main():
 			elif isD:
 				car.turn("right")
 		else:
-				car.stop()
+			car.stop()
 		if isR:
 			car.changeSpeed("up")
 		elif isF:

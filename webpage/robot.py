@@ -151,11 +151,11 @@ class Robot:
 		else:
 			self.spk.off()
 
-    def light(self, doLed):
-        if doLed:
-            self.led.on()
-        else:
-            self.led.off()
+	def light(self, doLed):
+		if doLed:
+			self.led.on()
+		else:
+			self.led.off()
 
 ###########################################
 ### This class is for individual motors ###

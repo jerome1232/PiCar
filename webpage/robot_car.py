@@ -23,9 +23,9 @@ class Robot:
 			Number of times per second to pulse signal to motors.
 		irSensor : (irSensor)
 			Check if an object is behind car.
-		led : (LED_Flasher)
+		led : (Led_Flasher)
 			Turns on/off a flashing LED.
-		spk : (toneEmitter)
+		spk : (ToneEmitter)
 			Object to emit sound, primarily used as a horn.
 
 	Methods:
@@ -212,7 +212,7 @@ class IrSensor:
 ###################
 ### LED Flasher ###
 ###################
-class LED_Flasher:
+class Led_Flasher:
 	def __init__(self, pin):
 		self.pin = pin
 		GPIO.setup(pin, GPIO.OUT)
@@ -226,7 +226,7 @@ class LED_Flasher:
 	def off(self):
 		self.flash.stop()
 
-class toneEmitter:
+class ToneEmitter:
 	def __init__(self, pin, freq):
 		self.pin = pin
 		self.freq = freq
@@ -279,11 +279,11 @@ def main():
 	### Creating IR sensor and LED flasher ###
 	##########################################
 	irSensor = IrSensor(ir_pin)
-	led = LED_Flasher(led_pin)
+	led = Led_Flasher(led_pin)
 	########################
 	### Creating speaker ###
 	########################
-	spk = toneEmitter(spk_pin, tone)
+	spk = ToneEmitter(spk_pin, tone)
 	#############################
 	### Creating robot object ###
 	#############################

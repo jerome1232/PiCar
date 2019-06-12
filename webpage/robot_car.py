@@ -137,7 +137,8 @@ class Robot:
                 print("Already at full speed!")
             else:
                 self.motorDc = self.motorDc + INC
-                if self.motorDc > 100: self.motorDc = 100:
+                if self.motorDc > 100:
+                    self.motorDc = 100
                     self.rightMotor.motorModifySpeed(self.motorDc)
                     self.leftMotor.motorModifySpeed(self.motorDc)
                     print("Duty Cycle at: ", self.motorDC)
@@ -146,7 +147,8 @@ class Robot:
                 print("Already at minimum speed!")
             else:
                 self.motorDc = self.motorDc - INC
-                if self.motorDc < 0: self.motorDc = 0:
+                if self.motorDc < 0:
+                    self.motorDc = 0
                     self.rightMotor.motorModifySpeed(self.motorDc)
                     self.leftMotor.motorModifySpeed(self.motorDc)
                     print("Duty Cycle at: ", self.motorDc)
@@ -167,7 +169,7 @@ class MotorDriver:
         self.backward = backward
         self.enable = enable
         self.pin_list = [forward, backward, enable]
-        GPIO.setup(pin_list, GPIO.OUT)
+        GPIO.setup(self.pin_list, GPIO.OUT)
         self.dc = dc
         self.freq = freq
         self.motor = GPIO.PWM(enable, freq)
@@ -216,7 +218,7 @@ class LED_Flasher:
         GPIO.setup(pin, GPIO.OUT)
         self.dc = 15
         self.freq = 1
-        self.flash = GPIO.PWM(pin, freq)
+        self.flash = GPIO.PWM(pin, self.freq)
 
     def on(self):
         self.flash.start(self.dc)
@@ -281,7 +283,7 @@ def main():
     ########################
     ### Creating speaker ###
     ########################
-    spk = toneEmmitter(spk_pin, tone)
+    spk = toneEmitter(spk_pin, tone)
     #############################
     ### Creating robot object ###
     #############################

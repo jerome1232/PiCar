@@ -6,8 +6,7 @@ import socket
 import os
 import signal
 import subprocess
-from robot import Robot,
-	Motor, Led_Flasher, IrSensor, ToneEmitter
+from robot import Robot, Motor, Led_Flasher, IrSensor, ToneEmitter
 GPIO.setmode(GPIO.BCM)
 
 def signal_handler(signum, frame):
@@ -30,11 +29,11 @@ def main():
 	motorFreq = 4000
 	motorDc = 100
 	## IR Sensor
-	ir_pin= 17  ### PLACEHOLDER VALUE, NOT TRUE PIN
+	ir_pin = 5  ### Maybe?
 	## Blue LED
-	led_pin = 27 ### PLACE HOLDER VALUE, NOT TRUE PIN
+	led_pin = 12 ### Maybe?
 	## Tone emitter
-	spk_pin = 32 ### PLACE HOLDER VALUE, NOT TRUE PIN
+	spk_pin = 17 ### Maybe?
 	tone = 440 ### Hertz to drive speaker at
 
 	##################################
@@ -97,6 +96,7 @@ def main():
 	isH = False
 
 	# Reading from the socket to listen for data
+	car.
 	while not isQ:
 		print('Waiting for a connection')
 		conct, client_address = sock.accept()

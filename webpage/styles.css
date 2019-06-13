@@ -31,20 +31,23 @@ a:hover {
 body {
 		background-color: #00252B;
 		color: #566E74;
+		justify-content: center;
 		text-align: center;
 }
 ol {
 	align: center;
+	text-align: center;
+	justify-content: center;
+	margin: auto;
 }
 ol li{
-	padding-left: 5px;
-	margin: 0;
 	text-align: justify;
 }
 .list {
 	position: relative;
-	margin-left: auto;
 	width: 50%;
+	margin: 0 auto;
+	text-align: center;
 }
 h1 {
 		color: #839496;
@@ -81,9 +84,10 @@ button:hover {
 		border-radius: 10%;
 		border: 2px solid green;
 }
-div.main {
+.main {
 		width: 50%;
 		margin: auto;
+		text-align: center;
 }
 
 div.overlay {

@@ -42,13 +42,13 @@
 		echo "server ip: $ip";
 		echo "</p>";
 	?>
-<script src='jquery/jquery-3.3.1.js'></script>
-<script src='keys.js'></script></body>
-<p>
-<canvas id="keyPressed")
-	width="600px"
-	height="100px">
-</canvas>
+	<script src='jquery/jquery-3.3.1.js'></script>
+	<script src='keys.js'></script>
+	<p>
+	<canvas id="keyPressed")
+		width="600px"
+		height="100px">
+	</canvas>
 </p>
 </body>
 <footer>

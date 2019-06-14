@@ -34,27 +34,12 @@ body {
 		justify-content: center;
 		text-align: center;
 }
-ol {
-	align: center;
-	text-align: center;
-	justify-content: center;
-	margin: auto;
-}
-ol li{
-	text-align: justify;
-}
-.list {
-	position: relative;
-	width: 50%;
-	margin: 0 auto;
-	text-align: center;
-}
 h1 {
-		color: #839496;
+		color: #586e75;
 		font-family=georgia, serif;
 }
 h2 {
-		color: #839496;
+		color: #586e75;
 		font-family=georgia, serif;
 }
 /* p {
@@ -72,7 +57,7 @@ h2 {
 		border-color: #003039;
 		padding: 5%;
 } */
-button {
+/* button {
 		color: white;
 		background-color: green;
 		border-radius: 10%;
@@ -83,23 +68,9 @@ button:hover {
 		background-color: #073642;
 		border-radius: 10%;
 		border: 2px solid green;
-}
+} */
 .main {
 		width: 50%;
 		margin: auto;
 		text-align: center;
-}
-
-div.overlay {
-		postion: fixed;
-		display: none;
-		width: 25%;
-		height: 25%;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: rgba (0, 0, 0, 0.5);
-		z-index: 2;
-		cursor: pointer;
 }

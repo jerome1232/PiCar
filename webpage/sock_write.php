@@ -11,7 +11,7 @@
 	{
 		echo "Connection failed: "
 		. socket_strerror(socket_last_error()) . " at "
-		. 'DOCUMENT_ROOT' . "/tmp/pySock";
+		. $_SERVER['DOCUMENT_ROOT'] . "/tmp/pySock";
 	}
 	else
 	{

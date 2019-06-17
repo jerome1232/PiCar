@@ -17,6 +17,7 @@ document.addEventListener('keydown', function(keyDown) {
 	// what key was pressed to a unix domain socket.
 	var x = canvas.width / 2;
 	if (keyDown.keyCode == 65) {
+		// This is for "A"
 		$.ajax({
 			type: 'POST',
 			url: 'sock_write.php',
@@ -29,6 +30,7 @@ document.addEventListener('keydown', function(keyDown) {
 		});
 	}
 	else if (keyDown.keyCode == 68) {
+		// This is for "D"
 		$.ajax({
 			type: 'POST',
 			url: 'sock_write.php',
@@ -41,6 +43,7 @@ document.addEventListener('keydown', function(keyDown) {
 		});
 	}
 	else if (keyDown.keyCode == 87) {
+		// This is for "W"
 		$.ajax({
 			type: 'POST',
 			url: 'sock_write.php',
@@ -53,6 +56,7 @@ document.addEventListener('keydown', function(keyDown) {
 		});
 	}
 	else if (keyDown.keyCode == 83) {
+		// This is for "S"
 		$.ajax({
 			type: 'POST',
 			url: 'sock_write.php',
@@ -65,6 +69,7 @@ document.addEventListener('keydown', function(keyDown) {
 		});
 	}
 	else if (keyDown.keyCode == 32) {
+	// This is for "Space"
 	$.ajax({
 			type: 'POST',
 			url: 'sock_write.php',
@@ -77,6 +82,7 @@ document.addEventListener('keydown', function(keyDown) {
 		});
 	}
 	else if (keyDown.keyCode == 81) {
+	// This is for "Q"
 	$.ajax({
 			type: 'POST',
 			url: 'sock_write.php',
@@ -89,6 +95,7 @@ document.addEventListener('keydown', function(keyDown) {
 		});
 	}
 	else if (keyDown.keyCode == 82) {
+		// This is for R
 		$.ajax({
 			type: 'POST',
 			url: 'sock_write.php',
@@ -101,6 +108,7 @@ document.addEventListener('keydown', function(keyDown) {
 		});
 	}
 	else if (keyDown.keyCode == 70) {
+		// This is for "F"
 		$.ajax({
 			type: 'POST',
 			url: 'sock_write.php',
@@ -113,6 +121,7 @@ document.addEventListener('keydown', function(keyDown) {
 		});
 	}
 	else if (keyDown.keyCode == 72) {
+		// This is for "H"
 		$.ajax({
 			type: 'POST',
 			url: 'sock_write.php',

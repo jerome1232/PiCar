@@ -167,6 +167,7 @@ def main():
 	# if loop has broken, stop the motor, clean pin and exit
 	car.stop()
 	GPIO.cleanup()
+	os.unlink(server_address)
 
 # Running main
 if __name__ == "__main__":

@@ -30,6 +30,7 @@
 		$pidf_path = "tmp/pid";
 		$pidf = fopen($pidf_path, "r");
 		$pid = fread($pidf, filesize($pidf_path));
+		echo "Previous PID: " . $pid;
 		fclose($pidf);
 		shell_exec("kill $pid");
 		$cmd = "nohup ./robot_car.py >/dev/null 2>&1 &";

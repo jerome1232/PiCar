@@ -34,9 +34,9 @@
 		$pid = fread($pidf, filesize($pidf_path));
 		echo "Previous PID: " . $pid;
 		fclose($pidf);
-		//shell_exec("kill $pid");
-		//$cmd = "nohup ./robot_car.py >/dev/null 2>&1 &";
-		//shell_exec($cmd);
+		shell_exec("kill $pid");
+		$cmd = "nohup ./robot_car.py >/dev/null 2>&1 &";
+		shell_exec($cmd);
 	?>
 <script src='jquery/jquery-3.3.1.js'></script>
 <script src='keys.js'></script></body>

@@ -7,10 +7,14 @@
 		exit();
 	}
 	$path = $_SERVER['DOCUMENT_ROOT'].'/tmp/pySock';
-	if (socket_connect($sock, $path) == false) {
+	if (socket_connect($sock, $path) == false)
+	{
 		echo "Connection failed: "
-		. socket_strerror(socket_last_error()) . "/n";
-	} else {
+		. socket_strerror(socket_last_error()) . " at "
+		. 'DOCUMENT_ROOT' . "/tmp/pySock";
+	}
+	else
+	{
 		socket_write($sock, $data);
 		socket_shutdown($sock);
 		socket_close($sock);

@@ -1,6 +1,7 @@
 <?php
 	$data = $_POST['key'];
-	if ($sock = socket_create(AF_UNIX, SOCK_STREAM, 0) == false)
+	$sock = socket_create(AF_UNIX, SOCK_STREAM, 0)
+	if (!$sock)
 	{
 		echo "socket_create() failed: "
 		. socket_strerror(socket_last_error());

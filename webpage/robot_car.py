@@ -28,11 +28,11 @@ def main():
 	motorFreq = 4000
 	motorDc = 100
 	## IR Sensor
-	ir_pin = 5  ### Maybe?
+	ir_pin = 6
 	## Blue LED
-	led_pin = 12 ### Maybe?
+	led_pin = 12
 	## Tone emitter
-	spk_pin = 17 ### Maybe?
+	spk_pin = 17
 	tone = 440 ### Hertz to drive speaker at
 
 	##################################

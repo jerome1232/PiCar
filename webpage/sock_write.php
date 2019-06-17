@@ -9,7 +9,7 @@
 	$path = $_SERVER['DOCUMENT_ROOT'].'/tmp/pySock';
 	if (socket_connect($sock, $path) == false)
 	{
-		echo "Connection failed: "
+		echo "Connection failed: " . "<br>"
 		. socket_strerror(socket_last_error()) . " at "
 		. $_SERVER['DOCUMENT_ROOT'] . "/tmp/pySock";
 	}

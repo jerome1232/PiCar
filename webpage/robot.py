@@ -79,8 +79,8 @@ class Robot:
 		"""
 
 		if direction == "forward":
-			self.rightMotor.forward()
-			self.leftMotor.forward()
+			self.rightMotor.forward
+			self.leftMotor.forward
 		elif direction == "backward":
 			self.rightMotor.backward()
 			self.leftMotor.backward()

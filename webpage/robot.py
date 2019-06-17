@@ -79,8 +79,8 @@ class Robot:
 		"""
 
 		if direction == "forward":
-			self.rightMotor.forward
-			self.leftMotor.forward
+			self.rightMotor.forward()
+			self.leftMotor.forward()
 		elif direction == "backward":
 			self.rightMotor.backward()
 			self.leftMotor.backward()
@@ -163,11 +163,14 @@ class Robot:
 ### This class is for individual motors ###
 ###########################################
 class Motor:
-	def __init__(self, forward, backward, enable, dc, freq):
-		self.forward = forward
-		self.backward = backward
-		self.enable = enable
-		self.pin_list = [forward, backward, enable]
+	def __init__(self,
+		forward_pin, backward_pin, enable_pin, dc, freq):
+
+		self.forward_pin = forward_pin
+		self.backward_pin = backward_pin
+		self.enable_pin = enable_pin
+		self.pin_list = [forward_pin,
+			backward_pin, enable_pin]
 		GPIO.setup(self.pin_list, GPIO.OUT)
 		self.dc = dc
 		self.freq = freq

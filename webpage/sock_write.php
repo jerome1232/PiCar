@@ -3,19 +3,13 @@
 	if ($sock = socket_create(AF_UNIX, SOCK_STREAM, 0) == false)
 	{
 		echo "socket_create() failed: "
-		. socket_strerror(socket_last_error()) . "/n";
+		. socket_strerror(socket_last_error());
 	}
 	$path = $_SERVER['DOCUMENT_ROOT'].'/tmp/pySock';
-	if (socket_bind($sock, $path) == false)
-	{
-		echo socket_strerror(socket_last_error());
-	}
 	if (socket_connect($sock, $path) == false)
 	{
-		echo socket_strerror(socket_last_error())
-		. " at "
-		. $_SERVER['DOCUMENT_ROOT']
-		. "/tmp/pySock";
+		echo "socket_connect() failed: "
+		. socket_strerror(socket_last_error());
 	}
 	else
 	{

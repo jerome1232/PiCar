@@ -79,11 +79,11 @@ class Robot:
 		"""
 
 		if direction == "forward":
-			self.rightMotor.forward(self.motorDc)
-			self.leftMotor.forward(self.motorDc)
+			self.rightMotor.forward()
+			self.leftMotor.forward()
 		elif direction == "backward":
-			self.rightMotor.backward(self.motorDc)
-			self.leftMotor.backward(self.motorDc)
+			self.rightMotor.backward()
+			self.leftMotor.backward()
 
 	def turn(self, direction):
 		"""
@@ -174,20 +174,17 @@ class Motor:
 		self.motor = GPIO.PWM(enable, freq)
 		self.motor.start(dc)
 
-	def forward(self, dc):
+	def forward(self):
 		GPIO.output(self.forward, GPIO.HIGH)
 		GPIO.output(self.backward, GPIO.LOW)
-		self.motor.ChangeDutyCycle(dc)
 
-	def backward(self, dc):
+	def backward(self):
 		GPIO.output(self.forward, GPIO.LOW)
 		GPIO.output(self.backward, GPIO.HIGH)
-		self.motor.ChangeDutyCycle(dc)
 
 	def stop(self):
 		GPIO.output(self.forward, GPIO.HIGH)
 		GPIO.output(self.backward, GPIO.HIGH)
-		self.motor.ChangeDutyCycle(self.dc)
 
 	def changeSpeed(self, dc):
 		self.motor.ChangeDutyCycle(dc)

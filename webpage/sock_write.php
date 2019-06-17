@@ -6,7 +6,7 @@
 		echo "socket_create() failed: "
 		. socket_strerror(socket_last_error());
 	}
-	$path = $_SERVER['DOCUMENT_ROOT'].'/tmp/pySock';
+	$path = $_SERVER['DOCUMENT_ROOT']."/tmp/pySock";
 	if (socket_connect($sock, $path) == false)
 	{
 		echo "socket_connect() failed: "

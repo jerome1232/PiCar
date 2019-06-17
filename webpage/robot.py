@@ -174,20 +174,20 @@ class Motor:
 		GPIO.setup(self.pin_list, GPIO.OUT)
 		self.dc = dc
 		self.freq = freq
-		self.motor = GPIO.PWM(enable, freq)
+		self.motor = GPIO.PWM(enable_pin, freq)
 		self.motor.start(dc)
 
 	def forward(self):
-		GPIO.output(self.forward, GPIO.HIGH)
-		GPIO.output(self.backward, GPIO.LOW)
+		GPIO.output(self.forward_pin, GPIO.HIGH)
+		GPIO.output(self.backward_pin, GPIO.LOW)
 
 	def backward(self):
-		GPIO.output(self.forward, GPIO.LOW)
-		GPIO.output(self.backward, GPIO.HIGH)
+		GPIO.output(self.forward_pin, GPIO.LOW)
+		GPIO.output(self.backward_pin, GPIO.HIGH)
 
 	def stop(self):
-		GPIO.output(self.forward, GPIO.HIGH)
-		GPIO.output(self.backward, GPIO.HIGH)
+		GPIO.output(self.forward_pin, GPIO.HIGH)
+		GPIO.output(self.backward_pin, GPIO.HIGH)
 
 	def changeSpeed(self, dc):
 		self.motor.ChangeDutyCycle(dc)

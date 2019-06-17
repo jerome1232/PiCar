@@ -25,7 +25,7 @@
 		System uptime: <?php echo shell_exec('uptime -p'); ?>
 		Linux Kernel: <?php echo php_uname(); ?>
 		Ip Address: <?php echo "server ip: $ip"; ?>
-		Document Root: <?php echo "$_SERVER['DOCUMENT_ROOT']"; ?>
+		Document Root: <?php echo $_SERVER['DOCUMENT_ROOT']; ?>
 	</div>
 	<?php
 		$pidf_path = "tmp/pid";

@@ -189,4 +189,16 @@ document.addEventListener("keyup", function(keyUp) {
 			}
 		})
 	}
+	else if (keyUp.keyCode == 72) {
+		// This is for "H"
+		$.ajax({
+			type: 'POST',
+			url: 'sock_write.php',
+			data: {key: "hUp"},
+			success: fucntion(data) {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.fillText('Cease the horn', 10, 50);
+				ctx.fillText(data, 10, 80);
+			}
+		})
 }, true);

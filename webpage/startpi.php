@@ -49,7 +49,7 @@
 		fclose($pidf);
 		shell_exec("kill $pid");
 		/* Run python script to start robot_car */
-		$cmd = "nohup pyScripts/robot_car.py >/dev/null 2>&1 &";
+		$cmd = "nohup ./robot_car.py >/dev/null 2>&1 &";
 		shell_exec($cmd);
 	?>
 <script src='jquery/jquery-3.3.1.js'></script>

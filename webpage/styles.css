@@ -1,3 +1,10 @@
+/*
+* Todo: add variables that store color values
+*/
+
+/*
+* Tap navigation bar styling.
+*/
 .topnav {
 		background-color: #002F38;
 		overflow: hidden;
@@ -22,17 +29,33 @@
 		background-color: #003943;
 		color: #D04926;
 }
-a {
+
+/*
+* Status bar styling.
+*/
+.statusBar {
+	background-color: #002F38;
 	color: #B88627;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 5px;
+	position: sticky;
 }
-a:hover {
-	color: #D04926;
-}
+
+/*
+* Standard body styling.
+*/
 body {
 		background-color: #00252B;
 		color: #566E74;
 		justify-content: center;
 		text-align: center;
+}
+a {
+	color: #B88627;
+}
+a:hover {
+	color: #D04926;
 }
 h1 {
 		color: #586e75;
@@ -42,33 +65,6 @@ h2 {
 		color: #586e75;
 		font-family=georgia, serif;
 }
-/* p {
-		width: 50%;
-		color: #839496;
-		background-color: #003039;
-		font-family: georgia, serif;
-		text-align: justify;
-		border-width: 2px;
-		margin-top: 20px;
-		margin-right: auto;
-		margin-left: auto;
-		margin-bottom: 20px;
-		border-style: solid;
-		border-color: #003039;
-		padding: 5%;
-} */
-/* button {
-		color: white;
-		background-color: green;
-		border-radius: 10%;
-		border: 2px solid green;
-}
-button:hover {
-		color: black;
-		background-color: #073642;
-		border-radius: 10%;
-		border: 2px solid green;
-} */
 .main {
 		width: 50%;
 		margin: auto;

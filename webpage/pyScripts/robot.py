@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
+
+###################################
+### Class defines entire robot. ###
+###################################
 class Robot:
 	"""
 	Create a robotic car with two motors, an ir sensor and a speaker.
@@ -163,8 +167,31 @@ class Robot:
 ### This class is for individual motors ###
 ###########################################
 class Motor:
+	"""
+	Control DC motor using pwm.
+
+	Attributes:
+		forward_pin (int): GPIO Pin, when set high motor rotates forwards.
+		backward_pin (int): GPIO Pin, when set high motor rotates backwards.
+		enable_pin (int): GPIO Pin, pwm sets speed of motor.
+		dc (int): Duty Cycle to run pwm at, controls speed of motor. Default 90.
+		freq (int): Frequncy to run pwm pulses at. Default to 100 hz.
+		motor (pwm): pwm object to control pwm on enable_pin.
+	"""
+
 	def __init__(self,
-		forward_pin, backward_pin, enable_pin, dc, freq):
+		forward_pin, backward_pin, enable_pin, dc = 90, freq = 4000):
+		"""
+		The constructor for Motor class.
+
+		Parameters:
+			forward_pin (int): GPIO Pin, when set high motor rotates forwards.
+			backward_pin (int): GPIO Pin, when set high motor rotates backwards.
+			enable_pin (int): GPIO Pin, pwm sets speed of motor.
+			dc (int): Duty Cycle to run pwm at, controls speed of motor.
+				Default 90.
+			freq (int): Frequncy to run pwm pulses at. Default to 100 hz
+		"""
 
 		self.forward_pin = forward_pin
 		self.backward_pin = backward_pin
@@ -178,24 +205,31 @@ class Motor:
 		self.motor.start(dc)
 
 	def forward(self):
+		""" Drive motor forward."""
+
 		GPIO.output(self.forward_pin, GPIO.HIGH)
 		GPIO.output(self.backward_pin, GPIO.LOW)
 
 	def backward(self):
+		""" Drive motor backward."""
+
 		GPIO.output(self.forward_pin, GPIO.LOW)
 		GPIO.output(self.backward_pin, GPIO.HIGH)
 
 	def stop(self):
+		""" Stop motor."""
 		GPIO.output(self.forward_pin, GPIO.HIGH)
 		GPIO.output(self.backward_pin, GPIO.HIGH)
 
 	def changeSpeed(self, dc):
-		self.motor.ChangeDutyCycle(dc)
+		"""
+		Change duty cycle to modify motor speed.
 
-	def getState(self):
-		print("enable:   ", GPIO.input(self.enable))
-		print("forward:  ", GPIO.input(self.forward))
-		print("backward: ", GPIO.input(self.backward))
+		Parameters:
+			dc (int): Duty cycle to change to.
+		"""
+
+		self.motor.ChangeDutyCycle(dc)
 
 #######################
 ### IR sensor class ###

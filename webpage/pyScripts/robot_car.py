@@ -9,6 +9,8 @@ import subprocess
 from robot import Robot, Motor, Led_Flasher, IrSensor, ToneEmitter
 
 def signal_handler(signum, frame):
+	""" Cleans up gpio pins and temporary files on interupt. """
+
 	print("Received {}. Cleaning up.".format(signum))
 	GPIO.cleanup()
 

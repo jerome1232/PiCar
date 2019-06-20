@@ -16,36 +16,26 @@
 		<a href="#contact">Contact</a>
 		<a href="#about">About</a>
 	</div>
-	<h2> Download project files </h2>
+	<h1> Download project files </h1>
 	<p>
-		robot_car.py:
-		<a href="robot_car.py" download="robot_car.py">robot_car.py</a>
-		Last modified:
-		<?php
-			echo date("F d, Y: G:i:s a", filemtime("robot_car.py"));
-		?>
-		<br>
-		index.html:
-		<a href="index.html" download="index.html">index.html</a>
-		Last modified:
-		<?php
-			echo date("F d, Y: G:i:s a", filemtime("index.html"));
-		?>
-		<br>
-		startpi.php:
-		<a href="startpi.php" download="startpi.php">startpi.php</a>
-		Last modified:
-		<?php
-			echo date("F d, Y: G:i:s a", filemtime("startpi.php"));
-		?>
-		<br>
-		styles.css:
-		<a href="styles.css" download="styles.css">styles.css</a>
-		Last modified:
-		<?php
-			echo date("F d, Y: G:i:s a", filemtime("styles.css"));
-		?>
-		<br>
+		<h3>Clone from github</h3>
+		<label for="https">https</label>
+		<input type="text"
+			class="form-control input-monospace input-sm"
+			data-autoselect value="git clone https://github.com/jerome1232/PiCar.git"
+			aria-label="Clone this repo at git@github.com: jerome1232/PiCar.git"
+			readonly size="43" id="https"><br>
+		<label for="ssh">ssh</label>
+		<input type="text"
+		class="form-control input-monospace input-sm"
+		data-autoselect value="git clone git@github.com:jerome1232/PiCar.git"
+		readonly size="41" id="ssh">
 	</p>
+	<div class="statusBar">
+		<?php $ip = $_SERVER['SERVER_ADDR']; ?>
+		System uptime: <?php echo shell_exec('uptime -p'); ?>
+		Linux Kernel: <?php echo php_uname(); ?>
+		Ip Address: <?php echo "server ip: $ip"; ?>
+	</div>
 </body>
 </html>

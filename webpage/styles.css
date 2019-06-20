@@ -77,3 +77,14 @@ h2 {
 		margin: auto;
 		text-align: center;
 }
+input {
+	background: #003943;
+	color: #566E74;
+	border: 1px solid #003943;
+	padding: 5px;
+	box-shadow:
+		inset 0 0 2px #003943;
+	-webkit-box-shadow:
+		inset 0 0 2px #003943;
+	margin: 2px;
+}

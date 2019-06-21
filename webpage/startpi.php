@@ -9,14 +9,12 @@
 <body>
 	<!-- This is the top navigation bar -->
 	<div class="topnav">
-		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a class="active" href="startpi.php">PiCar</a></li>
-			<li><a href="joystick.html">Joystick Testing</a></li>
-			<li><a href="downloads.php">Downloads</a></li>
-			<li><a href="#contact">Contact</a></li>
-			<li><a href="#about">About</a></li>
-		</ul>
+			<a href="index.html">Home</a>
+			<a class="active" href="startpi.php">PiCar</a>
+			<a href="joystick.html">Joystick Testing</a>
+			<a href="downloads.php">Downloads</a>
+			<a href="#contact">Contact</a>
+			<a href="#about">About</a>
 	</div>
 	<!-- Where mjpeg stream shows from Pi camera -->
 	<div class="pi-stream">

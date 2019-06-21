@@ -29,24 +29,19 @@
 		background-color: #003943;
 		color: #D04926;
 }
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-li a {
-	display: block;
-}
+
 /*
 * Status bar styling.
 */
 .statusBar {
 	background-color: #002F38;
 	color: #B88627;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 	padding-bottom: 5px;
 	position: sticky;
+	align: bottom;
+	width: auto;
 }
 
 /*

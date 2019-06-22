@@ -51,7 +51,7 @@
 		shell_exec($cmd);
 	?>
 <script src='jquery/jquery-3.3.1.js'></script>
-<script src='keys.js'></script></body>
+<script src='keys.js'></script>
 <p>
 <canvas id="keyPressed")
 	width="600px"

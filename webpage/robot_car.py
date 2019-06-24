@@ -7,6 +7,11 @@ import signal
 import RPi.GPIO as GPIO
 import subprocess
 from robot import Robot, Motor, Led_Flasher, IrSensor, ToneEmitter
+import board
+import busio
+import adafruit_ads1x15.ads1115 as ADS
+from adafruit_ads1x15.analog_in import AnalogIn
+
 
 def signal_handler(signum, frame):
 	""" Cleans up gpio pins and temporary files on interupt. """
@@ -36,6 +41,10 @@ def main():
 	## Tone emitter
 	spk_pin = 17
 	tone = 440 ### Hertz to drive speaker at
+	## Setting up I2C for battery voltage monitor
+	i2c = busio.I2C(board.SCL, board.SDA)
+	ads = ADS.ADS1115(i2c)
+	chan = AnalogIn(ads, ADS.P1)
 
 	##################################
 	# Creating left and right motors #

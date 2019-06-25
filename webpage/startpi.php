@@ -16,6 +16,21 @@
 			<a href="#contact">Contact</a>
 			<a href="#about">About</a>
 	</div>
+	<?php
+		/*
+		* Open a file that contains previous PID of python script.
+		* Close PID file
+		* kill the previous PID to ensure script isn't still running.
+		*/
+		$pidf_path = "tmp/pid";
+		$pidf = fopen($pidf_path, "r");
+		$pid = fread($pidf, filesize($pidf_path));
+		fclose($pidf);
+		shell_exec("kill $pid");
+		/* Run python script to start robot_car */
+		$cmd = "nohup ./robot_car.py >/dev/null 2>&1 &";
+		shell_exec($cmd);
+	?>
 	<!-- Where mjpeg stream shows from Pi camera -->
 	<div class="pi-stream">
 		<?php
@@ -41,21 +56,6 @@
 		Linux Kernel: <?php echo php_uname(); ?>
 		Ip Address: <?php echo "server ip: $ip"; ?>
 	</div>
-	<?php
-		/*
-		* Open a file that contains previous PID of python script.
-		* Close PID file
-		* kill the previous PID to ensure script isn't still running.
-		*/
-		$pidf_path = "tmp/pid";
-		$pidf = fopen($pidf_path, "r");
-		$pid = fread($pidf, filesize($pidf_path));
-		fclose($pidf);
-		shell_exec("kill $pid");
-		/* Run python script to start robot_car */
-		$cmd = "nohup ./robot_car.py >/dev/null 2>&1 &";
-		shell_exec($cmd);
-	?>
 <script src='jquery/jquery-3.3.1.js'></script>
 <script src='keys.js'></script>
 </body>

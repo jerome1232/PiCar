@@ -28,7 +28,7 @@
 		fclose($pidf);
 		shell_exec("kill $pid");
 		/* Run python script to start robot_car */
-		$cmd = "nohup ./robot_car.py >/dev/null 2>&1 &";
+		$cmd = "nohup python3 robot_car.py >/dev/null 2>&1 &";
 		shell_exec($cmd);
 	?>
 	<!-- Where mjpeg stream shows from Pi camera -->

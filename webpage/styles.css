@@ -72,6 +72,18 @@ h2 {
 		margin: auto;
 		text-align: center;
 }
+.pi-stream {
+	position: relative;
+	width: auto;
+	height: auto;
+}
+.info {
+	width: auto;
+	height: auto;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
 input {
 	background: #003943;
 	color: #566E74;

@@ -27,6 +27,12 @@
 			$ip = $_SERVER['SERVER_ADDR'];
 			echo "<img src=\"http://$ip:8080/?action=stream\" />";
 		?>
+		<div class="info">
+			<canvas id="keyPressed")
+				width="600px"
+				height="100px">
+			</canvas>
+		</div>
 	</div>
 	<!-- The below displays some server information in a status bar.
 		I plan to put a battery indicator here as well. -->
@@ -52,12 +58,6 @@
 	?>
 <script src='jquery/jquery-3.3.1.js'></script>
 <script src='keys.js'></script>
-<p>
-<canvas id="keyPressed")
-	width="600px"
-	height="100px">
-</canvas>
-</p>
 </body>
 <footer>
 	<address>

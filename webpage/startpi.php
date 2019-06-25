@@ -48,6 +48,12 @@
 				height="100px">
 			</canvas>
 		</div>
+		<div class="battery">
+			<canvas id="battery")
+				width="20px"
+				height="20px">
+			</canvas>
+		</div>>
 	</div>
 	<!-- The below displays some server information in a status bar.
 		I plan to put a battery indicator here as well. -->

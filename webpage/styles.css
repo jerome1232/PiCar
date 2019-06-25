@@ -74,15 +74,21 @@ h2 {
 }
 .pi-stream {
 	position: relative;
-	width: auto;
-	height: auto;
+	width: 800px;
+	height: 600px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    z-index: 1;
 }
 .info {
-	width: auto;
-	height: auto;
+	width: 600px;
+	height: 100px;
 	position: absolute;
-	bottom: 0px;
-	right: 0px;
+	bottom: 10px;
+	right: 10px;
+    z-index: 2;
 }
 input {
 	background: #003943;

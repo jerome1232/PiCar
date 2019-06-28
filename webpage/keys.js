@@ -1,12 +1,11 @@
-
-setInterval(getBatVolt, 30000);
-
-def getBatVolt() {
-	$.ajax({
-		type: 'POST',
-		// to complete
-	})
-}
+// setInterval(getBatVolt, 30000);
+//
+// def getBatVolt() {
+// 	$.ajax({
+// 		type: 'POST',
+// 		// to complete
+// 	})
+// }
 // So this is fairly simple. I've done very, very little
 // research into how javascript works, how to write it etc...
 // what I do know, is that document.addEventListener causes

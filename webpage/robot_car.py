@@ -24,23 +24,21 @@ def main():
 	## Setting up GPIO pins ###
 	###########################
 	## Left Motor Pins ###
-	lenable_pin = 16
-	lforward_pin = 20
-	lbackward_pin = 21
+	# enable, forward, reverse
+	lMotorPins = [16, 20, 21]
 	## Right Motor Pins ###
-	renable_pin = 13
-	rforward_pin = 19
-	rbackward_pin = 26
+	# enable, forward, reverse
+	rMotorPins = [13, 19, 26]
 	## Motor Duty cycle and frequncy
-	motorFreq = 4000
-	motorDc = 100
+	# frequency, duty cycle
+	motorPwm = [4000, 100]
 	## IR Sensor
 	ir_pin = 6
 	## Blue LED
 	led_pin = 12
 	## Tone emitter
-	spk_pin = 17
-	tone = 440 ### Hertz to drive speaker at
+	# pin, hertz
+	spk_pin = [17, 440]
 	## Setting up I2C for battery voltage monitor
 	i2c = busio.I2C(board.SCL, board.SDA)
 	ads = ADS.ADS1115(i2c)

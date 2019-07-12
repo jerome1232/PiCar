@@ -43,7 +43,8 @@ class Robot:
 			Honks the horn!
 	"""
 
-	def __init__(self, rightMotor, leftMotor, irSensor, led, spk):
+	def __init__(self, rightMotorPins, leftMotorPins,
+		irSensorPin, ledPin, spkPin):
 		""""
 		Attributes:
 			rightMotor : (motor)
@@ -62,13 +63,17 @@ class Robot:
 				The horn!
 		"""
 
-		self.rightMotor = rightMotor
-		self.leftMotor = leftMotor
+		self.rightMotor = Motor(rightMotorPins[0],
+			rightMotorPins[1],
+		 	rightMotorPins[2])
+		self.leftMotor = Motor(leftMotorPins[0],
+			leftMotorPins[1],
+			leftMotorPins[2])
 		self.motorDc = rightMotor.dc
 		self.motorFreq = rightMotor.freq
-		self.irSensor = irSensor
-		self.led = led
-		self.spk = spk
+		self.irSensor = IrSensor(irSensorPin)
+		self.led = LED_Flasher(ledPin)
+		self.spk = ToneEmitter(spkPin)
 		led.on()
 
 	def drive(self, direction):

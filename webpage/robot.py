@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 import RPi.GPIO as GPIO
+import board
+import busio
+import adafruit_ads1x15.ads1115 as ADS
+from adafruit_ads1x15.analog_in import AnalogIn
 GPIO.setmode(GPIO.BCM)
 
 ###########################################
@@ -189,6 +193,9 @@ class Robot:
 		self.led = LED_Flasher(ledPin)
 		self.spk = ToneEmitter(spkPin[0], spkPin[1])
 		led.on()
+		i2c = busio.I2C(board.SCL, board.SDA)
+		ads = ADS.ADS1115(i2c)
+		chan = AnalogIn(ads, ADS.P1)
 
 	def drive(self, direction):
 		"""

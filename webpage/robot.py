@@ -2,172 +2,6 @@
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 
-###################################
-### Class defines entire robot. ###
-###################################
-class Robot:
-	"""
-	Create a robotic car with two motors, an ir sensor and a speaker.
-
-	Attributes:
-		rightMotor : (motor)
-			Motor on right side of the car.
-		leftMotor : (motor)
-			Motor on the left side of the car.
-		motorDc : (int)
-			Dutycycle to run motors at.
-		motorFreq : (int)
-			Number of times per second to pulse signal to motors.
-		irSensor : (irSensor)
-			Check if an object is behind car.
-		led : (Led_Flasher)
-			Turns on/off a flashing LED.
-		spk : (ToneEmitter)
-			Object to emit sound, primarily used as a horn.
-
-	Methods:
-		drive(direction)
-			Drives both motors forwards or backwards.
-
-		turn(direction)
-			Turns the car right or left, reversed while backup up.
-
-		stop()
-			Stops both motors.
-
-		changeSpeed(upDown)
-			Changes motor duty cycle up or down to speed up or slow down
-			both motors.
-
-		honk(doHonk)
-			Honks the horn!
-	"""
-
-	def __init__(self, rightMotorPins, leftMotorPins,
-		irSensorPin, ledPin, spkPin):
-		""""
-		Attributes:
-			rightMotor : (motor)
-				The motor/motors on right side.
-			leftMotor : (motor)
-				The motor/motrs on left side.
-			motorDc : (int)
-				Duty Cycle, portion of on off time per cycle.
-			motorFreq : (int)
-				Frequncy to pulse off/on to motors.
-			irSensor : (irSensor)
-				infrared sensor to check for objects being backed into.
-			led : (LED_Flasher)
-				led flasher, to indicate program is running.
-			spk : (toneEmitter)
-				The horn!
-		"""
-
-		self.rightMotor = Motor(rightMotorPins[0],
-			rightMotorPins[1],
-		 	rightMotorPins[2])
-		self.leftMotor = Motor(leftMotorPins[0],
-			leftMotorPins[1],
-			leftMotorPins[2])
-		self.motorDc = rightMotor.dc
-		self.motorFreq = rightMotor.freq
-		self.irSensor = IrSensor(irSensorPin)
-		self.led = LED_Flasher(ledPin)
-		self.spk = ToneEmitter(spkPin)
-		led.on()
-
-	def drive(self, direction):
-		"""
-		Drives the motors forwards or backwards based on direction.
-
-		pass forward or backward as direction to drive.
-
-		Attributes:
-			direction : (str)
-				Can be forward or backward
-		"""
-
-		if direction == "forward":
-			self.rightMotor.forward()
-			self.leftMotor.forward()
-		elif direction == "backward":
-			self.rightMotor.backward()
-			self.leftMotor.backward()
-
-	def turn(self, direction):
-		"""
-		Drives one side to turn robot right or left. backing up results
-		in steering be reversed.
-
-		Attributes:
-			direction : (str)
-				Can be right or left.
-		"""
-
-		if direction == "right":
-			self.leftMotor.stop()
-		elif direction == "left":
-			self.rightMotor.stop()
-
-	def stop(self):
-		"""Stops the motors."""
-
-		self.rightMotor.stop()
-		self.leftMotor.stop()
-
-	def checkBack(self):
-		if self.irSensor.read():
-			self.spk.on()
-		else:
-			self.spk.off()
-
-	def changeSpeed(self, upDown):
-		"""
-		Changes the speed the motors are driven at in increments of 5
-
-		Attributes:
-			upDown : (str)
-				Can be either up or down.
-			INC : (int)
-				Increment to move duty cycle up or down by.
-
-		"""
-
-		INC = 5
-		if upDown == "up":
-			if self.motorDc == 100:
-				print("Already at full speed!")
-			else:
-				self.motorDc = self.motorDc + INC
-				if self.motorDc > 100:
-					self.motorDc = 100
-					self.rightMotor.changeSpeed(self.motorDc)
-					self.leftMotor.changeSpeed(self.motorDc)
-					print("Duty Cycle at: ", self.motorDC)
-		elif upDown == "down":
-			if self.motorDc == 0:
-				print("Already at minimum speed!")
-			else:
-				self.motorDc = self.motorDc - INC
-				if self.motorDc < 0:
-					self.motorDc = 0
-					self.rightMotor.changeSpeed(self.motorDc)
-					self.leftMotor.changeSpeed(self.motorDc)
-					print("Duty Cycle at: ", self.motorDc)
-
-	def honk(self, doHonk):
-		"""Honks the horn!"""
-		if doHonk:
-			self.spk.on()
-		else:
-			self.spk.off()
-
-	def light(self, doLed):
-		if doLed:
-			self.led.on()
-		else:
-			self.led.off()
-
 ###########################################
 ### This class is for individual motors ###
 ###########################################
@@ -277,3 +111,173 @@ class ToneEmitter:
 
 	def off(self):
 		self.emit.stop()
+
+###################################
+### Class defines entire robot. ###
+###################################
+class Robot:
+	"""
+	Create a robotic car with two motors, an ir sensor and a speaker.
+
+	Attributes:
+		rightMotor : (motor)
+			Motor on right side of the car.
+		leftMotor : (motor)
+			Motor on the left side of the car.
+		motorDc : (int)
+			Dutycycle to run motors at.
+		motorFreq : (int)
+			Number of times per second to pulse signal to motors.
+		irSensor : (irSensor)
+			Check if an object is behind car.
+		led : (Led_Flasher)
+			Turns on/off a flashing LED.
+		spk : (ToneEmitter)
+			Object to emit sound, primarily used as a horn.
+
+	Methods:
+		drive(direction)
+			Drives both motors forwards or backwards.
+
+		turn(direction)
+			Turns the car right or left, reversed while backup up.
+
+		stop()
+			Stops both motors.
+
+		changeSpeed(upDown)
+			Changes motor duty cycle up or down to speed up or slow down
+			both motors.
+
+		honk(doHonk)
+			Honks the horn!
+	"""
+
+	def __init__(self, rightMotorPins, leftMotorPins,
+		irSensorPin, ledPin, spkPin):
+		""""
+		Attributes:
+			rightMotor : (motor)
+				The motor/motors on right side.
+				Defualts:
+					enable: 13
+					forward: 19
+					backward: 26
+			leftMotor : (motor)
+				The motor/motors on left side.
+			motorDc : (int)
+				Duty Cycle, portion of on off time per cycle.
+			motorFreq : (int)
+				Frequncy to pulse off/on to motors.
+			irSensor : (irSensor)
+				infrared sensor to check for objects being backed into.
+			led : (LED_Flasher)
+				led flasher, to indicate program is running.
+			spk : (toneEmitter)
+				The horn!
+		"""
+
+		self.rightMotor = Motor(rightMotorPins[0],
+			rightMotorPins[1],
+		 	rightMotorPins[2])
+		self.leftMotor = Motor(leftMotorPins[0],
+			leftMotorPins[1],
+			leftMotorPins[2])
+		self.motorDc = rightMotor.dc
+		self.motorFreq = rightMotor.freq
+		self.irSensor = IrSensor(irSensorPin)
+		self.led = LED_Flasher(ledPin)
+		self.spk = ToneEmitter(spkPin[0], spkPin[1])
+		led.on()
+
+	def drive(self, direction):
+		"""
+		Drives the motors forwards or backwards based on direction.
+
+		pass forward or backward as direction to drive.
+
+		Attributes:
+			direction : (str)
+				Can be forward or backward
+		"""
+
+		if direction == "forward":
+			self.rightMotor.forward()
+			self.leftMotor.forward()
+		elif direction == "backward":
+			self.rightMotor.backward()
+			self.leftMotor.backward()
+
+	def turn(self, direction):
+		"""
+		Drives one side to turn robot right or left. backing up results
+		in steering be reversed.
+
+		Attributes:
+			direction : (str)
+				Can be right or left.
+		"""
+
+		if direction == "right":
+			self.leftMotor.stop()
+		elif direction == "left":
+			self.rightMotor.stop()
+
+	def stop(self):
+		"""Stops the motors."""
+
+		self.rightMotor.stop()
+		self.leftMotor.stop()
+
+	def checkBack(self):
+		if self.irSensor.read():
+			self.spk.on()
+		else:
+			self.spk.off()
+
+	def changeSpeed(self, upDown):
+		"""
+		Changes the speed the motors are driven at in increments of 5
+
+		Attributes:
+			upDown : (str)
+				Can be either up or down.
+			INC : (int)
+				Increment to move duty cycle up or down by.
+
+		"""
+
+		INC = 5
+		if upDown == "up":
+			if self.motorDc == 100:
+				print("Already at full speed!")
+			else:
+				self.motorDc = self.motorDc + INC
+				if self.motorDc > 100:
+					self.motorDc = 100
+					self.rightMotor.changeSpeed(self.motorDc)
+					self.leftMotor.changeSpeed(self.motorDc)
+					print("Duty Cycle at: ", self.motorDC)
+		elif upDown == "down":
+			if self.motorDc == 0:
+				print("Already at minimum speed!")
+			else:
+				self.motorDc = self.motorDc - INC
+				if self.motorDc < 0:
+					self.motorDc = 0
+					self.rightMotor.changeSpeed(self.motorDc)
+					self.leftMotor.changeSpeed(self.motorDc)
+					print("Duty Cycle at: ", self.motorDc)
+
+	def honk(self, doHonk):
+		"""Honks the horn!"""
+		if doHonk:
+			self.spk.on()
+		else:
+			self.spk.off()
+
+	def light(self, doLed):
+		if doLed:
+			self.led.on()
+		else:
+			self.led.off()

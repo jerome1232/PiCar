@@ -47,24 +47,23 @@ def main():
 	##################################
 	# Creating left and right motors #
 	##################################
-	left_motor = Motor(lforward_pin, lbackward_pin, lenable_pin,
-			motorDc, motorFreq)
-	right_motor = Motor(rforward_pin, rbackward_pin, renable_pin,
-			motorDc, motorFreq)
+	# left_motor = Motor(lforward_pin, lbackward_pin, lenable_pin,
+	# 		motorDc, motorFreq)
+	# right_motor = Motor(rforward_pin, rbackward_pin, renable_pin,
+	# 		motorDc, motorFreq)
 	##########################################
 	### Creating IR sensor and LED flasher ###
 	##########################################
-	irSensor = IrSensor(ir_pin)
-	led = Led_Flasher(led_pin)
-	########################
-	### Creating speaker ###
-	########################
-	spk = ToneEmitter(spk_pin, tone)
+	# irSensor = IrSensor(ir_pin)
+	# led = Led_Flasher(led_pin)
+	# ########################
+	# ### Creating speaker ###
+	# ########################
+	# spk = ToneEmitter(spk_pin, tone)
 	#############################
 	### Creating robot object ###
 	#############################
-	car = Robot(left_motor, right_motor, irSensor, led, spk)
-
+	car = Robot(lMotorPins, rMotorPins, ir_pin, ledPin, spk_pin)
 	##########################################################################
 	### Writting PID out to file so that PHP script can kill us on reload  ###
 	##########################################################################

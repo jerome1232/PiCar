@@ -4,6 +4,10 @@ import board
 import busio
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.analog_in import AnalogIn
+import os
+import socket
+import time
+
 GPIO.setmode(GPIO.BCM)
 
 ###########################################
@@ -158,7 +162,8 @@ class Robot:
 	"""
 
 	def __init__(self, rightMotorPins, leftMotorPins,
-		irSensorPin, ledPin, spkPin):
+		irSensorPin, ledPin, spkPin,
+		pidf_path, server_address):
 		""""
 		Attributes:
 			rightMotor : (motor)

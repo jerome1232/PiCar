@@ -64,7 +64,7 @@ def main():
 	### Writting PID out to file so that PHP script can kill us on reload  ###
 	##########################################################################
 	pid = str(os.getpid())
-	pidf_path = '/home/pi/Documents/robot_car/webpage/tmp/pid'
+	pidf_path = 'tmp/pid'
 	try:
 		os.unlink(pidf_path)
 	except OSError:
@@ -77,7 +77,7 @@ def main():
 	###       Creating a Unix Domain Socket for interprocess         ###
 	### communication. This allows us to communicate with php script ###
 	####################################################################
-	server_address = '/home/pi/Documents/robot_car/webpage/tmp/pySock'
+	server_address = 'tmp/pySock'
 	try:
 		os.unlink(server_address)
 	except OSError:

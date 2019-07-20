@@ -146,24 +146,19 @@ class Robot:
 	Methods:
 		drive(direction)
 			Drives both motors forwards or backwards.
-
 		turn(direction)
 			Turns the car right or left, reversed while backup up.
-
 		stop()
 			Stops both motors.
-
 		changeSpeed(upDown)
 			Changes motor duty cycle up or down to speed up or slow down
 			both motors.
-
 		honk(doHonk)
 			Honks the horn!
 	"""
 
-	def __init__(self, rightMotorPins, leftMotorPins,
-		irSensorPin, ledPin, spkPin,
-		pidf_path, server_address):
+	def __init__(self, rightMotorPins, leftMotorPins, irSensorPin, ledPin,
+				 spkPin, pidf_path, server_address = 'tmp/pySock'):
 		""""
 		Attributes:
 			rightMotor : (motor)
@@ -185,22 +180,57 @@ class Robot:
 			spk : (toneEmitter)
 				The horn!
 		"""
-
+		print("instanciating Robot")
 		self.rightMotor = Motor(rightMotorPins[0],
 			rightMotorPins[1],
 		 	rightMotorPins[2])
+		print("Right motor created")
 		self.leftMotor = Motor(leftMotorPins[0],
 			leftMotorPins[1],
 			leftMotorPins[2])
+		print("Left motor created")
 		self.motorDc = rightMotor.dc
+		print("Motor duty cycle set at", rightMotor.dc)
 		self.motorFreq = rightMotor.freq
+		print("Motor frequency set at", rightMotor.freq)
 		self.irSensor = IrSensor(irSensorPin)
+		print("irSensor started")
 		self.led = LED_Flasher(ledPin)
+		print("lights on!")
 		self.spk = ToneEmitter(spkPin[0], spkPin[1])
+		print("Horn initialised")
 		led.on()
 		i2c = busio.I2C(board.SCL, board.SDA)
 		ads = ADS.ADS1115(i2c)
 		chan = AnalogIn(ads, ADS.P1)
+		print("voltage monitor started")
+		print("Robot initialised!")
+		print("")
+		print("**************")
+		print("    *******")
+		print("*  **** *** **")
+
+	def getInput(self):
+			server_address = self.server_address
+			try:
+				os.unlink(server_address)
+			except OSError:
+				if os.path.exists(server_address):
+					raise
+			sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+			print('Starting up on {}'.format(server_address))
+			sock.bind(server_address)
+			sock.listen(1)
+			print("Socket created and listening for data")
+			# initialising variables to False
+			data = None
+
+			# Reading from the socket to listen for data
+			print('Waiting for a connection')
+			conct, client_address = sock.accept()
+			print('Connection from', client_address)
+			data = conct.recv(64)
+			return data.decode(encoding="UTF-8", errors="strict")
 
 	def drive(self, direction):
 		"""

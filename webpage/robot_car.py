@@ -77,97 +77,36 @@ def main():
 	###       Creating a Unix Domain Socket for interprocess         ###
 	### communication. This allows us to communicate with php script ###
 	####################################################################
-	server_address = 'tmp/pySock'
-	try:
-		os.unlink(server_address)
-	except OSError:
-		if os.path.exists(server_address):
-			raise
-	sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-	print('Starting up on {}'.format(server_address))
-	sock.bind(server_address)
-	sock.listen(1)
-	# initialising variables to False
-	isW = False
-	isA = False
-	isD = False
-	isS = False
-	isQ = False
-	isR = False
-	isF = False
-	isSpace = False
-	isH = False
-
-	# Reading from the socket to listen for data
-	while not isQ:
-		print('Waiting for a connection')
-		conct, client_address = sock.accept()
-		print('Connection from', client_address)
-		data = conct.recv(64)
-		data = data.decode(encoding="UTF-8", errors="strict")
-		# testing the data so we can act on it
-		if data:
-			if data == 'wDown':
-				isW = True
-			elif data == 'sDown':
-				isS = True
-			elif data == 'spaceDown':
-				isSpace = True
-			elif data == 'aDown':
-				isA = True
-			elif data == 'dDown':
-				isD = True
-			elif data == 'rDown':
-				isR = True
-			elif data == 'fDown':
-				isF = True
-			elif data == 'qDown':
-				isQ = True
-			elif data == 'hDown':
-				isH = True
-			elif data == 'wUp':
-				isW = False
-			elif data == 'sUp':
-				isS = False
-			elif data == 'aUp':
-				isA = False
-			elif data == 'dUp':
-				isD = False
-			elif data == 'rUp':
-				isR = False
-			elif data == 'fUp':
-				isF = False
-			elif data == 'hUp':
-				isH = False
 		###
 		### Begin logic to run the Car
 		###
-		if isW:
+	while (result == robot.getInput()):
+		if data == 'isW':
 			car.drive("forward")
-			if isA:
+			if data == 'isA':
 				car.turn("left")
-			elif isD:
+			elif data =='isD':
 				car.turn("right")
-		elif isS:
+		elif data == 'isS':
 			car.drive("backward")
-			if isA:
+			if data == 'isA':
 				car.turn("left")
-			elif isD:
+			elif data == 'isD':
 				car.turn("right")
 		else:
 			car.stop()
-		if isR:
+		if data == 'isR':
 			car.changeSpeed("up")
-		elif isF:
+		elif data == 'isF':
 			car.changeSpeed("down")
 
-		if isH:
+		if data == 'isH':
 			car.honk(True)
 		else:
 			car.honk(False)
 		# Give the cpu some free time for other tasks by sleeping
 		# one millisecond
-		time.sleep(.01)
+		time.sleep(.1)
 	# if loop has broken, stop the motor, clean pin and exit
 	car.stop()
 	GPIO.cleanup()

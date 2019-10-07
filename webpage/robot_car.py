@@ -77,9 +77,10 @@ def main():
 	###       Creating a Unix Domain Socket for interprocess         ###
 	### communication. This allows us to communicate with php script ###
 	####################################################################
-		###
-		### Begin logic to run the Car
-		###
+	###
+	### Begin logic to run the Car
+	###
+	### Drive forward, backward or turning
 	while (result == robot.getInput()):
 		if data == 'isW':
 			car.drive("forward")
@@ -95,11 +96,14 @@ def main():
 				car.turn("right")
 		else:
 			car.stop()
+
+		### Change motor speed up or down
 		if data == 'isR':
 			car.changeSpeed("up")
 		elif data == 'isF':
 			car.changeSpeed("down")
 
+		# Honk the horn?
 		if data == 'isH':
 			car.honk(True)
 		else:

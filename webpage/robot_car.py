@@ -7,6 +7,10 @@ import signal
 import RPi.GPIO as GPIO
 import subprocess
 from robot import Robot, Motor, Led_Flasher, IrSensor, ToneEmitter
+import board
+import busio
+import adafruit_ads1x15.ads1115 as ADS
+from adafruit_ads1x15.analog_in import AnalogIn
 
 
 def signal_handler(signum, frame):

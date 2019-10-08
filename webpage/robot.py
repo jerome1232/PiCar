@@ -204,6 +204,8 @@ class Robot:
 		ads = ADS.ADS1115(i2c)
 		chan = AnalogIn(ads, ADS.P1)
 		print("voltage monitor started")
+		self.server_address = '/home/pi/Documents/robot_car/webpage/tmp/pid'
+		print("Unix Domain Socket set")
 		print("Robot initialised!")
 		print("")
 		print("**************")

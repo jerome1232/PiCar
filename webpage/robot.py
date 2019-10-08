@@ -33,7 +33,8 @@ class Motor:
 
 		Parameters:
 			forward_pin (int): GPIO Pin, when set high motor rotates forwards.
-			backward_pin (int): GPIO Pin, when set high motor rotates backwards.
+			backward_pin (int): GPIO Pin, when set high motor
+								rotates backwards.
 			enable_pin (int): GPIO Pin, pwm sets speed of motor.
 			dc (int): Duty Cycle to run pwm at, controls speed of motor.
 				Default 90.

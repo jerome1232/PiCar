@@ -1,6 +1,8 @@
-# from robot import Robot
+#!/usr/bin/env python3
 import socket
 from robot import Robot
+import logging
+import sys
 
 def main():
    """
@@ -38,6 +40,7 @@ def main():
       _pi_car (robot): The pi car we will control.
    """
 
+   logging.basicConfig(level=logging.INFO)
 
    # Eventually these will be read from a config file. But not yet
    # Left Motor Pins
@@ -69,34 +72,39 @@ def main():
    _listen_sock.bind(_s_address)
    _listen_sock.listen(1)
 
-   listen = True
-
-   while listen:
+   logging.info("Starting up socket")
+   # Creating a tcp socket to listen for connections
+   while True:
       (clientsocket, address) = _listen_sock.accept()
-      try:
-         print("connection from: ", address)
+      logging.info("connection from: %s", address)
 
-         while listen:
-            data = clientsocket.recv(16)
-            print('received {!r}'.format(data))
-            if data:
-               print("data")
-               info = data.decode('ascii')
-               if (info == "q"):
-                   listen = False
-               elif (info == "w"):
-                  _pi_car.forward()
-               elif (info == "s"):
-                  _pi_car.backward()
-               elif (info == "a"):
-                  _pi_car.left()
-               elif (info == "d"):
-                  _pi_car.right()
-            else:
-               print('no data from: ', address)
-               break
+      hear = True
+      '''Sentinal value to stop socket listen loop.'''
+      while hear:
+         data = clientsocket.recv(1)
+         if data:
+            info = data.decode('ascii')
+            logging.info("Recieved %s", info)
+            if (info == "q"):
+                  hear = False
+                  logging.info("Quiting")
+            elif (info == "w"):
+               _pi_car.forward()
+            elif (info == "s"):
+               _pi_car.backward()
+            elif (info == "a"):
+               _pi_car.left()
+            elif (info == "d"):
+               _pi_car.right()
+            elif (info == "b"):
+               _pi_car.modSpeed("left", 80)
+               _pi_car.modSpeed("right", 30)
+         else:
+            print('no data from: ', address)
+            hear = False 
 
-      finally:
-         _listen_sock.close()
-
-main()
+if __name__ == "__main__":
+   try:
+      main()
+   except KeyboardInterrupt:
+      sys.exit()

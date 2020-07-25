@@ -26,6 +26,17 @@ class Robot:
          "direction": "none"
       }
 
+   def modSpeed(self, motor, dc):
+      '''Modifies dc/speed of single motor'''
+      if motor == 'right':
+         self.rMotor.speed(dc)
+         logging.info(f"Robot: Changed right motor speed to {dc}")
+      elif motor == 'left':
+         self.lMotor.speed(dc)
+         logging.info(f"Robot: Changed left motor speed to {dc}")
+      else:
+         logging.info(f"Robot: {motor} is not a valid motor. Use left/right")
+
    def forward(self):
       """Drives robot forward."""
       self.rMotor.forward()

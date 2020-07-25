@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-import board
 
 class Motor:
     """
@@ -22,7 +21,9 @@ class Motor:
             forward_pin (int): GPIO Pin, when set high motor rotates forwards.
             backward_pin (int): GPIO Pin, when set hihg motor rotates backwards.
             enable_pin (int): GPIO Pin, pwm sets speed of motor.
-            dc (int): Duty cycle to run pwm at, the amount of time motor is on per pwm pulse. Default is 90.
+            dc (int): Duty cycle to run pwm at, the amount of time motor is on per pwm pulse.
+            Default is 90.
+
             freq (init): Frequency to run pwm puleses at, default is 100hz.
         """
         self.forward_pin = forward_pin

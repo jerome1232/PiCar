@@ -67,14 +67,17 @@ def main():
    _pi_car = Robot(_lmotor_pins, _rmotor_pins, _motor_dc, _motor_freq, _ir_pin)
 
    # Create a listening socket
+   logging.info("Creating listen socket")
    _s_address = ('0.0.0.0', 5005)
    _listen_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
    _listen_sock.bind(_s_address)
    _listen_sock.listen(1)
+   logging.info("Socket created")
 
    logging.info("Starting up socket")
    # Creating a tcp socket to listen for connections
    while True:
+      logging.info("Listening on socket for connections") 
       (clientsocket, address) = _listen_sock.accept()
       logging.info("connection from: %s", address)
 

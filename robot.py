@@ -106,3 +106,7 @@ class Robot:
       """Drive left motor backwards, right motor coasts."""
       self.rMotor.coast()
       self.lMotor.backward()
+
+   def process_data(self, data):
+      """Processes input data"""
+      pass
